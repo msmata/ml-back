@@ -10,7 +10,12 @@ export class ItemController {
 
 	public listItems = (request: Request, response: Response) => {
 		const query = request.query.query as string;
-		const itemResponse = this.itemService.listItems(query);
-		return response.status(200).send(itemResponse);
+
+		try {
+			const itemResponse = this.itemService.listItems(query);
+			return response.status(200).send(itemResponse);
+		} catch(error) {
+			return response.status(500).send({errorMessage: 'Ocurrió un error al consultar la API de Mercado Libre'});
+		}
 	};
 }

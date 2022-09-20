@@ -5,7 +5,7 @@ export class MercadoLibreConnector {
     private apiClient;
 
     constructor() {
-        this.apiClient = axios.create({ baseURL: 'https://api.mercadolibre.com'});
+        this.apiClient = axios.create({ baseURL: process.env.MERCADO_LIBRE_API_URL});
     }
 
     public async listItems(query: String) {

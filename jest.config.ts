@@ -10,6 +10,9 @@ module.exports = {
   transform: {
     '^.+\\.ts$': 'ts-jest',
   },
+  setupFiles: [
+    'dotenv/config'
+  ],
   roots: ['<rootDir>/src'],
   testPathIgnorePatterns: ['/node_modules/'],
   testMatch: ['**/*.test.(ts|js)'],

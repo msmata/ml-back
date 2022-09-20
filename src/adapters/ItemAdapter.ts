@@ -19,7 +19,10 @@ export class ItemAdapter {
                     currency: r.currency_id,
                     amount: Math.floor(r.price),
                     decimals: this.parsePriceDecimals(r.price)
-                }
+                },
+                picture: r.thumbnail,
+                condition: r.condition,
+                free_shipping: r.shipping.free_shipping
             };
         });
 

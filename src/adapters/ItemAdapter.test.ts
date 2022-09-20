@@ -29,6 +29,9 @@ describe('Item Adapter Unit Test', () => {
         expect(price.currency).toBe('ARS');
         expect(price.amount).toBe(82999);
         expect(price.decimals).toBe(99);
+        expect(firstItem.picture).toBe('http://http2.mlstatic.com/D_852458-MLA48270995220_112021-I.jpg');
+        expect(firstItem.condition).toBe('new');
+        expect(firstItem.free_shipping).toBe(false);
     };
 
     it('Should return an ItemResponse', () => {

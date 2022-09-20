@@ -26,7 +26,15 @@ export const LIST_ITEM_MOCK_RESPONSE = `
         "accepts_mercadopago": true,
         "installments": {},
         "address": {},
-        "shipping": {},
+        "shipping": {
+            "free_shipping": false,
+            "mode": "me2",
+            "tags": [
+                "self_service_in"
+            ],
+            "logistic_type": "cross_docking",
+            "store_pick_up": false
+        },
         "seller_address": {},
         "attributes": [],
         "original_price": null,
@@ -66,7 +74,15 @@ export const LIST_ITEM_MOCK_RESPONSE = `
         "accepts_mercadopago": true,
         "installments": {},
         "address": {},
-        "shipping": {},
+        "shipping": {
+            "free_shipping": false,
+            "mode": "me2",
+            "tags": [
+                "self_service_in"
+            ],
+            "logistic_type": "cross_docking",
+            "store_pick_up": false
+        },
         "seller_address": {},
         "attributes": [],
         "original_price": null,
@@ -105,7 +121,15 @@ export const LIST_ITEM_MOCK_RESPONSE = `
         "accepts_mercadopago": true,
         "installments": {},
         "address": {},
-        "shipping": {},
+        "shipping": {
+            "free_shipping": false,
+            "mode": "me2",
+            "tags": [
+                "self_service_in"
+            ],
+            "logistic_type": "cross_docking",
+            "store_pick_up": false
+        },
         "seller_address": {},
         "attributes": [],
         "original_price": null,

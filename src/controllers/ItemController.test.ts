@@ -1,4 +1,3 @@
-import { ItemService } from '../services/ItemService';
 import { ItemResponse } from '../types/ItemResponse';
 import { ItemController } from './ItemController';
 
@@ -15,7 +14,7 @@ describe('Item Controller Unit Tests', () => {
 
 	describe('List items Unit Tests', () => {
 		const givenItemServiceReturnsAnItemResponse = () => {
-			listItemsMock.mockImplementation((_query: string) => {
+			listItemsMock.mockImplementation(async (_query: string) => {
 				const itemResponse: ItemResponse = {
 					author: {
 						name: 'Martin',
@@ -46,7 +45,7 @@ describe('Item Controller Unit Tests', () => {
 			listItemsMock.mockImplementation((_query: string) => {throw new Error('MercadoLibre Internal Error')});
 			itemController.itemService.listItems = listItemsMock;
 		};
-		const whenItemControllerIsExecuted = () => {
+		const whenItemControllerIsExecuted = async () => {
 			mockRequest = {};
 			mockRequest.query = {};
 			mockRequest.query.query = 'moto g20';
@@ -63,7 +62,7 @@ describe('Item Controller Unit Tests', () => {
 				},
 			};
 
-			itemController.listItems(mockRequest, mockResponse);
+			await itemController.listItems(mockRequest, mockResponse);
 		};
 		const thenResponseShouldBeSuccessful = () => {
 			expect(mockResponse.statusCode).toBe(200);
@@ -87,9 +86,9 @@ describe('Item Controller Unit Tests', () => {
 			expect(response.errorMessage).toBe("Ocurrió un error al consultar la API de Mercado Libre");
 		};
 
-		it('Should return a response with an array of items', () => {
+		it('Should return a response with an array of items', async () => {
 			givenItemServiceReturnsAnItemResponse();
-			whenItemControllerIsExecuted();
+			await whenItemControllerIsExecuted();
 			thenResponseShouldBeSuccessful();
 			thenResponseShouldContainAnArrayOfItems();
 		});

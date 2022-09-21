@@ -32,7 +32,8 @@ describe('Item Controller Unit Tests', () => {
 							},
 							picture: 'http://http2.mlstatic.com/D_852458-MLA48270995220_112021-I.jpg',
 							condition: 'new',
-							free_shipping: true
+							free_shipping: true,
+							location: 'Tristan Suarez'
 						}
 					],
 				};

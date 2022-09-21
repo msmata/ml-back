@@ -25,7 +25,12 @@ export const LIST_ITEM_MOCK_RESPONSE = `
         "thumbnail_id": "852458-MLA48270995220_112021",
         "accepts_mercadopago": true,
         "installments": {},
-        "address": {},
+        "address": {
+          "state_id": "AR-C",
+          "state_name": "Capital Federal",
+          "city_id": "TUxBQlBBTDI1MTVa",
+          "city_name": "Palermo"
+        },
         "shipping": {
             "free_shipping": false,
             "mode": "me2",

@@ -23,7 +23,8 @@ export class ItemAdapter {
                 },
                 picture: r.thumbnail,
                 condition: r.condition,
-                free_shipping: r.shipping.free_shipping
+                free_shipping: r.shipping.free_shipping,
+                location: r.address.city_name
             };
         });
 

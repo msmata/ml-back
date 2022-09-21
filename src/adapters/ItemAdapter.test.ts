@@ -32,6 +32,7 @@ describe('Item Adapter Unit Test', () => {
         expect(firstItem.picture).toBe('http://http2.mlstatic.com/D_852458-MLA48270995220_112021-I.jpg');
         expect(firstItem.condition).toBe('new');
         expect(firstItem.free_shipping).toBe(false);
+        expect(firstItem.location).toBe('Palermo');
     };
 
     it('Should return an ItemResponse', () => {

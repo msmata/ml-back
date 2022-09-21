@@ -10,8 +10,9 @@ export class ItemAdapter {
     }
 
     public queryItems(mercadoLibreResponse: any): ItemResponse {
-        const categories = mercadoLibreResponse.results.map((r: { category_id: any; }) => r.category_id);
-        const items = mercadoLibreResponse.results.map((r: any) => {
+        const results = mercadoLibreResponse.results.slice(0, 4);
+        const categories = results.map((r: { category_id: any; }) => r.category_id);
+        const items = results.map((r: any) => {
             return {
                 id: r.id,
                 title: r.title,

@@ -11,8 +11,6 @@ RUN rm jest.config.ts
 RUN yarn install
 RUN yarn build
 
-WORKDIR /usr/app
-
 EXPOSE 4000
 
 CMD [ "node", "./dist/index.js" ]

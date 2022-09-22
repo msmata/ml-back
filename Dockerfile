@@ -11,12 +11,6 @@ RUN rm jest.config.ts
 RUN yarn install
 RUN yarn build
 
-RUN mkdir -p /usr/app/dist
-COPY .env /usr/app
-RUN ls
-ADD dist /usr/app/dist
-ADD node_modules /usr/app/node_modules
-
 WORKDIR /usr/app
 
 EXPOSE 4000

@@ -15,6 +15,8 @@ export class ItemController {
 			const itemResponse = await this.itemService.listItems(query);
 			return response.status(200).send(itemResponse);
 		} catch(error) {
+			console.error('ERROR');
+			console.error(error);
 			return response.status(500).send({errorMessage: 'Ocurrió un error al consultar la API de Mercado Libre'});
 		}
 	};

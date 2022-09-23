@@ -1,4 +1,5 @@
 import { ItemResponse } from '../types/ItemResponse';
+import { SingleItemResponse } from '../types/SingleItemResponse';
 
 export class ItemAdapter {
 
@@ -35,6 +36,29 @@ export class ItemAdapter {
             },
             categories,
             items
+        };
+    }
+
+    public querySingleItems(singleItemResponse: any, singleItemDescriptionResponse: any): SingleItemResponse {
+        return {
+            author: {
+                name: process.env.AUTHOR_NAME || '',
+                lastname: process.env.AUTHOR_LASTNAME || ''
+            },
+            item: {
+                id: singleItemResponse.id,
+                title: singleItemResponse.title,
+                price: {
+                    amount: Math.floor(singleItemResponse.price),
+                    currency: singleItemResponse.currency_id,
+                    decimals: this.parsePriceDecimals(singleItemResponse.price)
+                },
+                picture: singleItemResponse.thumbnail,
+                condition: singleItemResponse.condition,
+                free_shipping: singleItemResponse.shipping.free_shipping,
+                sold_quantity: singleItemResponse.sold_quantity,
+                description: singleItemDescriptionResponse.plain_text
+            }
         };
     }
 }

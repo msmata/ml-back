@@ -20,8 +20,9 @@ export class ItemService {
 	}
 
 	public async getSingleItem(itemId: string): Promise<SingleItemResponse> {
-		const mercadoLibreSingleItemResponse = await this.mercadoLibreConnector.getItemById(itemId);
-		const mercadoLibreSingleItemDescriptionResponse = await this.mercadoLibreConnector.getItemDescriptionById(itemId);
+		const mercadoLibreSingleItemResponsePromise = this.mercadoLibreConnector.getItemById(itemId);
+		const mercadoLibreSingleItemDescriptionResponsePromise = this.mercadoLibreConnector.getItemDescriptionById(itemId);
+		const [mercadoLibreSingleItemResponse, mercadoLibreSingleItemDescriptionResponse] = await Promise.all([mercadoLibreSingleItemResponsePromise, mercadoLibreSingleItemDescriptionResponsePromise]);
 		const singleItemResponse: SingleItemResponse = this.itemAdapter.querySingleItems(mercadoLibreSingleItemResponse, mercadoLibreSingleItemDescriptionResponse);
 		return singleItemResponse;
 	}

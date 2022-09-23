@@ -18,6 +18,15 @@ describe('Item Controller Unit Tests', () => {
 		expect(mockResponse.statusCode).toBe(200);
 	};
 
+	const thenResponseShouldAnErrorMessage = () => {
+		const response = mockResponse.sendMessage;
+		expect(response.errorMessage).toBe("Ocurrió un error al consultar la API de Mercado Libre");
+	};
+
+	const thenResponseShouldBeInternalError = () => {
+		expect(mockResponse.statusCode).toBe(500);
+	};
+
 	describe('List items Unit Tests', () => {
 		const givenItemServiceReturnsAnItemResponse = () => {
 			listItemsMock.mockImplementation(async (_query: string) => {
@@ -48,7 +57,7 @@ describe('Item Controller Unit Tests', () => {
 			});
 			itemController.itemService.listItems = listItemsMock;
 		};
-		const givenItemServiceThrowsAnError = () => {
+		const givenListItemsServiceThrowsAnError = () => {
 			listItemsMock.mockImplementation((_query: string) => {throw new Error('MercadoLibre Internal Error')});
 			itemController.itemService.listItems = listItemsMock;
 		};
@@ -72,9 +81,6 @@ describe('Item Controller Unit Tests', () => {
 			await itemController.listItems(mockRequest, mockResponse);
 		};
 
-		const thenResponseShouldBeInternalError = () => {
-			expect(mockResponse.statusCode).toBe(500);
-		};
 		const thenResponseShouldContainAnArrayOfItems = () => {
 			const response = mockResponse.sendMessage;
 			expect(response.author.lastname).toBe("Mata");
@@ -86,10 +92,6 @@ describe('Item Controller Unit Tests', () => {
 			const item = response.items[0];
 			expect(item.title).toBe("Motorola G20");
 		};
-		const thenResponseShouldAnErrorMessage = () => {
-			const response = mockResponse.sendMessage;
-			expect(response.errorMessage).toBe("Ocurrió un error al consultar la API de Mercado Libre");
-		};
 
 		it('Should return a response with an array of items', async () => {
 			givenItemServiceReturnsAnItemResponse();
@@ -98,9 +100,9 @@ describe('Item Controller Unit Tests', () => {
 			thenResponseShouldContainAnArrayOfItems();
 		});
 
-		it('Should return a response with an error', () => {
-			givenItemServiceThrowsAnError();
-			whenListItemsIsExecuted();
+		it('Should return a response with an error', async () => {
+			givenListItemsServiceThrowsAnError();
+			await whenListItemsIsExecuted();
 			thenResponseShouldBeInternalError();
 			thenResponseShouldAnErrorMessage();
 		});
@@ -133,6 +135,11 @@ describe('Item Controller Unit Tests', () => {
 
 				return itemResponse;
 			});
+			itemController.itemService.getSingleItem = getSingleItemMock;
+		};
+
+		const givenItemServiceThrowsAnError = () => {
+			getSingleItemMock.mockImplementation((_itemId: string) => {throw new Error('MercadoLibre Internal Error')});
 			itemController.itemService.getSingleItem = getSingleItemMock;
 		};
 
@@ -177,6 +184,13 @@ describe('Item Controller Unit Tests', () => {
 			await whenGetSingleItemIsExecuted();
 			thenResponseShouldBeSuccessful();
 			thenResponseShouldContainASingleItem();
+		});
+
+		it('Should return a response with an error', async () => {
+			givenItemServiceThrowsAnError();
+			await whenGetSingleItemIsExecuted();
+			thenResponseShouldBeInternalError();
+			thenResponseShouldAnErrorMessage();
 		});
 	});
 });

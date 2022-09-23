@@ -23,7 +23,14 @@ export class ItemController {
 
 	public getSingleItem = async (request: Request, response: Response) => {
 		const itemId = request.params.id;
-		const singleItemResponse = await this.itemService.getSingleItem(itemId);
-		return response.status(200).send(singleItemResponse);
+
+		try {
+			const singleItemResponse = await this.itemService.getSingleItem(itemId);
+			return response.status(200).send(singleItemResponse);
+		} catch(error) {
+			console.error('ERROR');
+			console.error(error);
+			return response.status(500).send({errorMessage: 'Ocurrió un error al consultar la API de Mercado Libre'});
+		}
 	};
 }

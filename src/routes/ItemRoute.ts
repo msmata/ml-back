@@ -10,5 +10,6 @@ export class ItemRoute {
 
 	public routes(application: express.Application) {
 		application.route('/api/items').get(this.itemController.listItems);
+		application.route('/api/items/:id').get(this.itemController.getSingleItem);
 	}
 }

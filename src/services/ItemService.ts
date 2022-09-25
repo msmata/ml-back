@@ -4,7 +4,6 @@ import { ItemResponse } from '../types/ItemResponse';
 import { SingleItemResponse } from '../types/SingleItemResponse';
 
 export class ItemService {
-
 	public mercadoLibreConnector: MercadoLibreConnector;
 	private itemAdapter: ItemAdapter;
 
@@ -21,9 +20,16 @@ export class ItemService {
 
 	public async getSingleItem(itemId: string): Promise<SingleItemResponse> {
 		const mercadoLibreSingleItemResponsePromise = this.mercadoLibreConnector.getItemById(itemId);
-		const mercadoLibreSingleItemDescriptionResponsePromise = this.mercadoLibreConnector.getItemDescriptionById(itemId);
-		const [mercadoLibreSingleItemResponse, mercadoLibreSingleItemDescriptionResponse] = await Promise.all([mercadoLibreSingleItemResponsePromise, mercadoLibreSingleItemDescriptionResponsePromise]);
-		const singleItemResponse: SingleItemResponse = this.itemAdapter.querySingleItems(mercadoLibreSingleItemResponse, mercadoLibreSingleItemDescriptionResponse);
+		const mercadoLibreSingleItemDescriptionResponsePromise =
+			this.mercadoLibreConnector.getItemDescriptionById(itemId);
+		const [mercadoLibreSingleItemResponse, mercadoLibreSingleItemDescriptionResponse] = await Promise.all([
+			mercadoLibreSingleItemResponsePromise,
+			mercadoLibreSingleItemDescriptionResponsePromise,
+		]);
+		const singleItemResponse: SingleItemResponse = this.itemAdapter.querySingleItems(
+			mercadoLibreSingleItemResponse,
+			mercadoLibreSingleItemDescriptionResponse,
+		);
 		return singleItemResponse;
 	}
 }

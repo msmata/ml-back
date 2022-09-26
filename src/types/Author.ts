@@ -1,4 +1,4 @@
 export type Author = {
-	name: String;
-	lastname: String;
+	name: string;
+	lastname: string;
 };

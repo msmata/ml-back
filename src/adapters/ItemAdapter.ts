@@ -43,6 +43,8 @@ export class ItemAdapter {
 			? singleItemResponse.pictures[0].url
 			: singleItemResponse.thumbnail;
 
+		const itemCondition = singleItemResponse.condition === 'new' ? 'Nuevo' : 'Usado';
+
 		return {
 			author: {
 				name: process.env.AUTHOR_NAME || '',
@@ -57,7 +59,7 @@ export class ItemAdapter {
 					decimals: this.parsePriceDecimals(singleItemResponse.price),
 				},
 				picture: itemPicture,
-				condition: singleItemResponse.condition,
+				condition: itemCondition,
 				free_shipping: singleItemResponse.shipping.free_shipping,
 				sold_quantity: singleItemResponse.sold_quantity,
 				description: singleItemDescriptionResponse.plain_text,

@@ -79,7 +79,7 @@ describe('Item Service Unit Test', () => {
 		expect(singleItemResponse.item.price.currency).toBe('ARS');
 		expect(singleItemResponse.item.price.decimals).toBe(37);
 		expect(singleItemResponse.item.picture).toBe('http://http2.mlstatic.com/D_654660-MLA45667151245_042021-O.jpg');
-		expect(singleItemResponse.item.condition).toBe('new');
+		expect(singleItemResponse.item.condition).toBe('Nuevo');
 		expect(singleItemResponse.item.free_shipping).toBeFalsy();
 		expect(singleItemResponse.item.sold_quantity).toBe(250);
 		expect(singleItemResponse.item.description).toBe(

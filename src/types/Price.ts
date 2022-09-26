@@ -1,5 +1,5 @@
 export type Price = {
-	currency: String;
-	amount: Number;
-	decimals: Number;
+	currency: string;
+	amount: number;
+	decimals: number;
 };

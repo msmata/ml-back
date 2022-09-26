@@ -2,7 +2,7 @@ import { ItemResponse } from '../types/ItemResponse';
 import { SingleItemResponse } from '../types/SingleItemResponse';
 
 export class ItemAdapter {
-	private parsePriceDecimals(price: string): Number {
+	private parsePriceDecimals(price: string): number {
 		const fractionalPart = parseFloat(price) % 1;
 		const fractionalPartWithOnlyTwoDecimals = fractionalPart.toFixed(2);
 		const decimalsWithoutIntegerPart = fractionalPartWithOnlyTwoDecimals.substring(2);
@@ -39,6 +39,10 @@ export class ItemAdapter {
 	}
 
 	public querySingleItems(singleItemResponse: any, singleItemDescriptionResponse: any): SingleItemResponse {
+		const itemPicture = singleItemResponse.pictures
+			? singleItemResponse.pictures[0].url
+			: singleItemResponse.thumbnail;
+
 		return {
 			author: {
 				name: process.env.AUTHOR_NAME || '',
@@ -52,7 +56,7 @@ export class ItemAdapter {
 					currency: singleItemResponse.currency_id,
 					decimals: this.parsePriceDecimals(singleItemResponse.price),
 				},
-				picture: singleItemResponse.thumbnail,
+				picture: itemPicture,
 				condition: singleItemResponse.condition,
 				free_shipping: singleItemResponse.shipping.free_shipping,
 				sold_quantity: singleItemResponse.sold_quantity,

@@ -39,6 +39,8 @@ export class ItemAdapter {
 	}
 
 	public querySingleItems(singleItemResponse: any, singleItemDescriptionResponse: any): SingleItemResponse {
+		const itemPicture = singleItemResponse.pictures ? singleItemResponse.pictures[0].url : singleItemResponse.thumbnail;
+
 		return {
 			author: {
 				name: process.env.AUTHOR_NAME || '',
@@ -52,7 +54,7 @@ export class ItemAdapter {
 					currency: singleItemResponse.currency_id,
 					decimals: this.parsePriceDecimals(singleItemResponse.price),
 				},
-				picture: singleItemResponse.thumbnail,
+				picture: itemPicture,
 				condition: singleItemResponse.condition,
 				free_shipping: singleItemResponse.shipping.free_shipping,
 				sold_quantity: singleItemResponse.sold_quantity,

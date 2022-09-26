@@ -2,7 +2,7 @@ import { ItemResponse } from '../types/ItemResponse';
 import { SingleItemResponse } from '../types/SingleItemResponse';
 
 export class ItemAdapter {
-	private parsePriceDecimals(price: string): Number {
+	private parsePriceDecimals(price: string): number {
 		const fractionalPart = parseFloat(price) % 1;
 		const fractionalPartWithOnlyTwoDecimals = fractionalPart.toFixed(2);
 		const decimalsWithoutIntegerPart = fractionalPartWithOnlyTwoDecimals.substring(2);

@@ -39,7 +39,9 @@ export class ItemAdapter {
 	}
 
 	public querySingleItems(singleItemResponse: any, singleItemDescriptionResponse: any): SingleItemResponse {
-		const itemPicture = singleItemResponse.pictures ? singleItemResponse.pictures[0].url : singleItemResponse.thumbnail;
+		const itemPicture = singleItemResponse.pictures
+			? singleItemResponse.pictures[0].url
+			: singleItemResponse.thumbnail;
 
 		return {
 			author: {

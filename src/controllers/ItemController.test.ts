@@ -36,6 +36,7 @@ describe('Item Controller Unit Tests', () => {
 						lastname: 'Mata',
 					},
 					categories: ['MLA1055'],
+					breadcrumb: 'Electronica, Audio y Video > iPod > Reproductores > iPod touch > 32 GB',
 					items: [
 						{
 							id: '01',
@@ -88,6 +89,7 @@ describe('Item Controller Unit Tests', () => {
 			expect(response.author.lastname).toBe('Mata');
 			expect(response.author.name).toBe('Martin');
 			expect(response.categories.length).toBe(1);
+			expect(response.breadcrumb).toBe('Electronica, Audio y Video > iPod > Reproductores > iPod touch > 32 GB');
 			const category = response.categories[0];
 			expect(category).toBe('MLA1055');
 			expect(response.items.length).toBe(1);

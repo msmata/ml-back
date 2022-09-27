@@ -60,6 +60,7 @@ describe('Item Service Unit Test', () => {
 		expect(itemResponse.author.lastname).toBe('Mata');
 		expect(itemResponse.categories.length).toBe(3);
 		expect(itemResponse.categories[0]).toBe('MLA1055');
+		expect(itemResponse.breadcrumb).toBe('Celulares y Teléfonos > Celulares y Smartphones');
 		expect(itemResponse.items.length).toBe(3);
 		const firstItem = itemResponse.items[0];
 		expect(firstItem.id).toBe('MLA1163559608');

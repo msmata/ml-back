@@ -21,4 +21,9 @@ export class MercadoLibreConnector {
 		const mercadoLibreResponse = await this.apiClient.get(`items/${id}/description`);
 		return mercadoLibreResponse.data;
 	}
+
+	public async getCategoryDescription(categoryId: string) {
+		const mercadoLibreResponse = await this.apiClient.get(`categories/${categoryId}`);
+		return mercadoLibreResponse.data;
+	}
 }

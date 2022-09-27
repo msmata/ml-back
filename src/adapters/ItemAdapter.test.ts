@@ -1,5 +1,6 @@
 import { ItemResponse } from '../types/ItemResponse';
 import { SingleItemResponse } from '../types/SingleItemResponse';
+import { GET_CATEGORY_DESCRIPTION_MOCK_RESPONSE } from './GetCategoryDescriptionMockResponse';
 import { GET_SINGLE_ITEM_DESCRIPTION_MOCK_RESPONSE } from './GetSingleItemDescriptionMockResponse';
 import { GET_SINGLE_ITEM_MOCK_RESPONSE } from './GetSingleItemMockResponse';
 import { ItemAdapter } from './ItemAdapter';
@@ -9,9 +10,11 @@ describe('Item Adapter Unit Test', () => {
 	let queryItemResponse: any;
 	let querySingleItemResponse: any;
 	let querySingleItemDescriptionResponse: any;
+	let queryCategoryDescriptionResponse: any;
 	let itemAdapter = new ItemAdapter();
 	let itemResponse: ItemResponse;
 	let singleItemResponse: SingleItemResponse;
+	let breadcrumbResponse: string;
 
 	const givenAQueryItemResponse = () => {
 		queryItemResponse = JSON.parse(LIST_ITEM_MOCK_RESPONSE);
@@ -25,12 +28,20 @@ describe('Item Adapter Unit Test', () => {
 		querySingleItemDescriptionResponse = JSON.parse(GET_SINGLE_ITEM_DESCRIPTION_MOCK_RESPONSE);
 	};
 
+	const givenACategoryDescriptionResponse = () => {
+		queryCategoryDescriptionResponse = JSON.parse(GET_CATEGORY_DESCRIPTION_MOCK_RESPONSE);
+	};
+
 	const whenItemAdapterIsExecuted = () => {
 		itemResponse = itemAdapter.queryItems(queryItemResponse);
 	};
 
 	const whenSingleItemAdapterIsExecuted = () => {
 		singleItemResponse = itemAdapter.querySingleItems(querySingleItemResponse, querySingleItemDescriptionResponse);
+	};
+
+	const whenBreadCrumbAdapterIsExecuted = () => {
+		breadcrumbResponse = itemAdapter.queryBreadcrumb(queryCategoryDescriptionResponse);
 	};
 
 	const thenAnItemResponseShouldBeReturned = () => {
@@ -69,6 +80,10 @@ describe('Item Adapter Unit Test', () => {
 		);
 	};
 
+	const thenABreadcrumbShouldBeReturned = () => {
+		expect(breadcrumbResponse).toBe('Celulares y Teléfonos > Celulares y Smartphones');
+	};
+
 	it('Should return an ItemResponse', () => {
 		givenAQueryItemResponse();
 		whenItemAdapterIsExecuted();
@@ -80,5 +95,11 @@ describe('Item Adapter Unit Test', () => {
 		givenAQuerySingleItemDescriptionResponse();
 		whenSingleItemAdapterIsExecuted();
 		thenASingleItemResponseShouldBeReturned();
+	});
+
+	it('Should return a BreadCrumb', () => {
+		givenACategoryDescriptionResponse();
+		whenBreadCrumbAdapterIsExecuted();
+		thenABreadcrumbShouldBeReturned();
 	});
 });

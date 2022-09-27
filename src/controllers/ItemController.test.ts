@@ -36,6 +36,7 @@ describe('Item Controller Unit Tests', () => {
 						lastname: 'Mata',
 					},
 					categories: ['MLA1055'],
+					breadcrumb: 'Electronica, Audio y Video > iPod > Reproductores > iPod touch > 32 GB',
 					items: [
 						{
 							id: '01',
@@ -88,6 +89,7 @@ describe('Item Controller Unit Tests', () => {
 			expect(response.author.lastname).toBe('Mata');
 			expect(response.author.name).toBe('Martin');
 			expect(response.categories.length).toBe(1);
+			expect(response.breadcrumb).toBe('Electronica, Audio y Video > iPod > Reproductores > iPod touch > 32 GB');
 			const category = response.categories[0];
 			expect(category).toBe('MLA1055');
 			expect(response.items.length).toBe(1);
@@ -133,6 +135,7 @@ describe('Item Controller Unit Tests', () => {
 						description:
 							'SOPORTE PARA ESTANTES 5/5 NIQUELADOS. CONSULTAR COMPRAS AL POR MAYOR BUELTOS DE 8000 UNIDADES. VALOR X 100 UNIDADES------FRACCIONES DE 100, 500, 1000 Y 8000 UNIDADES. SOMOS ROTECH HERRAJES, IMPORTADORES DIRECTOS DE INSUMOS PARA LA INDUSTRIA DEL MUEBLE. IMPORTAMOS: GUIAS OCULTAS, TELESCOPICAS, GUIA TANDEM LATERAL DE CHAPA, BISAGRAS CIERRE SUAVE LINEAS PESADAS, TORNILLOS Y ABRASIVOS. DISTRIBUIDORES OFICIALES DE KEKOL, TITEBON, SIA ABRASIVOS SUIZOS, TORX, BARIGUI, GRUPO EURO, ETC.',
 					},
+					breadcrumb: 'Construcción > Materiales de Obra > Fijaciones > Tornillos'
 				};
 
 				return itemResponse;
@@ -183,6 +186,7 @@ describe('Item Controller Unit Tests', () => {
 			expect(response.item.description).toBe(
 				'SOPORTE PARA ESTANTES 5/5 NIQUELADOS. CONSULTAR COMPRAS AL POR MAYOR BUELTOS DE 8000 UNIDADES. VALOR X 100 UNIDADES------FRACCIONES DE 100, 500, 1000 Y 8000 UNIDADES. SOMOS ROTECH HERRAJES, IMPORTADORES DIRECTOS DE INSUMOS PARA LA INDUSTRIA DEL MUEBLE. IMPORTAMOS: GUIAS OCULTAS, TELESCOPICAS, GUIA TANDEM LATERAL DE CHAPA, BISAGRAS CIERRE SUAVE LINEAS PESADAS, TORNILLOS Y ABRASIVOS. DISTRIBUIDORES OFICIALES DE KEKOL, TITEBON, SIA ABRASIVOS SUIZOS, TORX, BARIGUI, GRUPO EURO, ETC.',
 			);
+			expect(response.breadcrumb).toBe('Construcción > Materiales de Obra > Fijaciones > Tornillos');
 		};
 
 		it('Should return a response with a single item', async () => {

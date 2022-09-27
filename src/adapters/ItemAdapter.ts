@@ -33,6 +33,7 @@ export class ItemAdapter {
 				name: process.env.AUTHOR_NAME || '',
 				lastname: process.env.AUTHOR_LASTNAME || '',
 			},
+			breadcrumb: '',
 			categories,
 			items,
 		};
@@ -64,6 +65,14 @@ export class ItemAdapter {
 				sold_quantity: singleItemResponse.sold_quantity,
 				description: singleItemDescriptionResponse.plain_text,
 			},
+			breadcrumb: ''
 		};
+	}
+
+	public queryBreadcrumb(categoryDescriptionResponse: any) {
+		const pathFromRoot = categoryDescriptionResponse.path_from_root;
+		const fullPath = pathFromRoot.map((pfr:any) => pfr.name);
+		const breadcrumb = fullPath.join(' > ');
+		return breadcrumb;
 	}
 }

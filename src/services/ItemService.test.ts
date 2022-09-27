@@ -60,6 +60,7 @@ describe('Item Service Unit Test', () => {
 		expect(itemResponse.author.lastname).toBe('Mata');
 		expect(itemResponse.categories.length).toBe(3);
 		expect(itemResponse.categories[0]).toBe('MLA1055');
+		expect(itemResponse.breadcrumb).toBe('Celulares y Teléfonos > Celulares y Smartphones');
 		expect(itemResponse.items.length).toBe(3);
 		const firstItem = itemResponse.items[0];
 		expect(firstItem.id).toBe('MLA1163559608');
@@ -85,6 +86,7 @@ describe('Item Service Unit Test', () => {
 		expect(singleItemResponse.item.description).toBe(
 			'SOPORTE PARA ESTANTES 5/5 NIQUELADOS. CONSULTAR COMPRAS AL POR MAYOR BUELTOS DE 8000 UNIDADES. VALOR X 100 UNIDADES------FRACCIONES DE 100, 500, 1000 Y 8000 UNIDADES. SOMOS ROTECH HERRAJES, IMPORTADORES DIRECTOS DE INSUMOS PARA LA INDUSTRIA DEL MUEBLE. IMPORTAMOS: GUIAS OCULTAS, TELESCOPICAS, GUIA TANDEM LATERAL DE CHAPA, BISAGRAS CIERRE SUAVE LINEAS PESADAS, TORNILLOS Y ABRASIVOS. DISTRIBUIDORES OFICIALES DE KEKOL, TITEBON, SIA ABRASIVOS SUIZOS, TORX, BARIGUI, GRUPO EURO, ETC.',
 		);
+		expect(singleItemResponse.breadcrumb).toBe('Construcción > Materiales de Obra > Fijaciones > Tornillos');
 	};
 
 	it('Should return an ItemResponse', async () => {

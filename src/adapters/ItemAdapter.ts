@@ -65,6 +65,7 @@ export class ItemAdapter {
 				sold_quantity: singleItemResponse.sold_quantity,
 				description: singleItemDescriptionResponse.plain_text,
 			},
+			breadcrumb: ''
 		};
 	}
 

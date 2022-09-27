@@ -53,10 +53,14 @@ export class ItemService {
 			mercadoLibreSingleItemResponsePromise,
 			mercadoLibreSingleItemDescriptionResponsePromise,
 		]);
+		const categoryId = mercadoLibreSingleItemResponse.category_id;
+		const categoryDescriptionResponse = await this.mercadoLibreConnector.getCategoryDescription(categoryId);
+		const breadcrumb = this.itemAdapter.queryBreadcrumb(categoryDescriptionResponse);
 		const singleItemResponse: SingleItemResponse = this.itemAdapter.querySingleItems(
 			mercadoLibreSingleItemResponse,
 			mercadoLibreSingleItemDescriptionResponse,
 		);
+		singleItemResponse.breadcrumb = breadcrumb;
 		return singleItemResponse;
 	}
 }
